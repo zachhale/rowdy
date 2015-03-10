@@ -59,8 +59,9 @@ Object.defineProperty(rowdy, "setting", {
 rowdy.setupServer = function (callback) {
   // Start selenium and wait until ready.
   if (rowdy.config._setting.startLocal) {
-    selenium.start();
-    return selenium.ready(callback);
+    selenium.start(function () {
+      return selenium.ready(callback);
+    });
   }
 
   callback();
